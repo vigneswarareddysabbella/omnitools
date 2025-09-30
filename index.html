@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mini Projects Hub — 15 Projects (Complete)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🚀 Mini Projects Hub — 15 Projects (Complete)</h1>
+    <p class="muted">All projects in one page. Weather & Crypto live; Music plays real audio. Professional implementation.</p>
+  </header>
+
+  <div class="nav-grid" id="navGrid">
+    <div class="nav-card active" data-project="p-welcome">Welcome</div>
+    <div class="nav-card" data-project="p-music">Telugu Music</div>
+    <div class="nav-card" data-project="p-calculator">Calculator</div>
+    <div class="nav-card" data-project="p-todo">Todo List</div>
+    <div class="nav-card" data-project="p-weather">Weather</div>
+    <div class="nav-card" data-project="p-form">Form Validation</div>
+    <div class="nav-card" data-project="p-dropdown">Drop-down</div>
+    <div class="nav-card" data-project="p-progress">Progress Bar</div>
+    <div class="nav-card" data-project="p-product">Product</div>
+    <div class="nav-card" data-project="p-crypto">Crypto</div>
+    <div class="nav-card" data-project="p-quiz">Quiz</div>
+    <div class="nav-card" data-project="p-clock">Digital Clock</div>
+    <div class="nav-card" data-project="p-tts">Text to Speech</div>
+    <div class="nav-card" data-project="p-qr">QR Generator</div>
+    <div class="nav-card" data-project="p-password">Password Gen</div>
+  </div>
+
+  <main class="content" id="content">
+    <!-- Welcome -->
+    <section id="p-welcome" class="active">
+      <h2>Welcome</h2>
+      <div class="row">
+        <div class="card">
+          <h3>Overview</h3>
+          <p class="small">This hub contains 15 projects. For weather, set an OpenWeather API key (button in Weather panel). Music uses sample mp3 URLs but you can replace them with local files (e.g., songs/song.mp3).</p>
+        </div>
+        <div class="card">
+          <h3>Quick actions</h3>
+          <ul>
+            <li class="small">Weather: click Set API Key to store <code>mph_openweather_key</code> in localStorage.</li>
+            <li class="small">Calculator & Todo persist in localStorage with namespaced keys.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Music -->
+    <section id="p-music">
+      <h2>🎵 Telugu Music Player</h2>
+      <div class="row">
+        <div class="card" style="flex:1 1 420px">
+          <div id="nowPlaying" class="small">Select a song</div>
+          <audio id="audio" preload="metadata"></audio>
+          <div class="flex" style="margin-top:12px;align-items:center">
+            <button class="btn" id="prevBtn">⏮</button>
+            <button class="btn" id="playBtn">▶</button>
+            <button class="btn" id="nextBtn">⏭</button>
+            <button class="btn" id="shuffleBtn">🔀</button>
+            <button class="btn" id="repeatBtn">🔁</button>
+            <div class="right muted">Volume <input id="vol" type="range" min="0" max="100" value="70" style="vertical-align:middle"></div>
+          </div>
+          <div style="margin-top:12px">
+            <div class="flex">
+              <span id="curTime">0:00</span>
+              <input id="seek" type="range" min="0" max="100" value="0" style="flex:1">
+              <span id="dur">0:00</span>
+            </div>
+            <div class="progress" style="margin-top:8px"><i id="progBar"></i></div>
+          </div>
+        </div>
+
+        <div class="card" style="flex:1 1 320px">
+          <h3>Playlist</h3>
+          <ul id="playlist" class="playlist" aria-label="playlist"></ul>
+          <p class="small">Replace src for song objects below with local filenames if you have them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator -->
+    <section id="p-calculator">
+      <h2>🔢 Calculator (history)</h2>
+      <div class="row">
+        <div class="card" style="min-width:320px;flex:1 1 460px">
+          <input id="calcDisplay" readonly style="font-size:1.2rem;padding:12px;margin-bottom:8px" aria-label="Calculator display">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+            <button class="btn calc" data-val="7">7</button>
+            <button class="btn calc" data-val="8">8</button>
+            <button class="btn calc" data-val="9">9</button>
+            <button class="btn calc op" data-val="/">/</button>
+
+            <button class="btn calc" data-val="4">4</button>
+            <button class="btn calc" data-val="5">5</button>
+            <button class="btn calc" data-val="6">6</button>
+            <button class="btn calc op" data-val="*">*</button>
+
+            <button class="btn calc" data-val="1">1</button>
+            <button class="btn calc" data-val="2">2</button>
+            <button class="btn calc" data-val="3">3</button>
+            <button class="btn calc op" data-val="-">-</button>
+
+            <button class="btn calc" data-val="0" style="grid-column:span 2">0</button>
+            <button class="btn calc" data-val=".">.</button>
+            <button class="btn calc op" data-val="+">+</button>
+          </div>
+          <div class="flex" style="margin-top:8px">
+            <button class="btn" id="calcEquals">=</button>
+            <button class="btn" id="calcClear">C</button>
+            <button class="btn" id="calcDel">⌫</button>
+          </div>
+        </div>
+
+        <div class="card" style="flex:1 1 320px">
+          <h3>History</h3>
+          <div id="calcHistory" style="max-height:320px;overflow:auto"></div>
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="clearHistory">Clear History</button>
+            <div class="right muted" id="historyCount">0 items</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Todo -->
+    <section id="p-todo">
+      <h2>✅ Todo List</h2>
+      <div class="row">
+        <div class="card" style="flex:1 1 420px">
+          <input id="taskInput" placeholder="Add a new task..." />
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="addTaskBtn">Add Task</button>
+            <button class="btn" id="clearCompleted">Clear Completed</button>
+          </div>
+          <ul id="tasks" style="margin-top:12px"></ul>
+        </div>
+        <div class="card" style="flex:1 1 240px">
+          <h3>Stats</h3>
+          <div class="stats" id="todoStats"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weather -->
+    <section id="p-weather">
+      <h2>🌤 Weather</h2>
+      <div class="row">
+        <div class="card" style="flex:1 1 420px">
+          <div class="flex">
+            <input id="cityInput" placeholder="City name (e.g. Hyderabad)" />
+            <button class="btn" id="fetchWeatherBtn">Fetch</button>
+          </div>
+          <div id="weatherResult" style="margin-top:12px"></div>
+        </div>
+        <div class="card" style="flex:1 1 320px">
+          <h3>Auto-locate & API key</h3>
+          <p class="small">Click Auto-locate to use your browser location. Click Set API Key to store your OpenWeather key locally (localStorage key <code>mph_openweather_key</code>).</p>
+          <div class="flex">
+            <button class="btn" id="autoLocate">Auto-locate</button>
+            <button class="btn" id="setApiKey">Set API Key</button>
+          </div>
+          <div style="margin-top:8px"><small class="muted">OpenWeather key: <span id="apiKeyStatus">set</span></small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section id="p-form">
+      <h2>📋 Form Validation</h2>
+      <form id="validationForm">
+        <div style="margin-bottom:8px">
+          <label>Full name</label>
+          <input id="v-name" required />
+          <div id="nameErr" class="muted small"></div>
+        </div>
+        <div style="margin-bottom:8px">
+          <label>Email</label>
+          <input id="v-email" type="email" required/>
+          <div id="emailErr" class="muted small"></div>
+        </div>
+        <div style="margin-bottom:8px">
+          <label>Phone</label>
+          <input id="v-phone" required/>
+          <div id="phoneErr" class="muted small"></div>
+        </div>
+        <button class="btn" type="submit">Validate</button>
+      </form>
+    </section>
+
+    <!-- Dropdown -->
+    <section id="p-dropdown">
+      <h2>🔽 Drop-down</h2>
+      <div class="row">
+        <div class="card">
+          <label>Choose country</label>
+          <select id="d-country">
+            <option value="">--</option>
+            <option>India</option><option>United States</option><option>UK</option><option>Japan</option>
+          </select>
+        </div>
+        <div class="card">
+          <label>Category</label>
+          <select id="d-cat"><option value="">--</option><option>Tech</option><option>Health</option><option>Finance</option></select>
+        </div>
+      </div>
+      <div style="margin-top:12px" id="dropdownOut"></div>
+    </section>
+
+    <!-- Progress -->
+    <section id="p-progress">
+      <h2>⭕ Progress Bar</h2>
+      <div class="row">
+        <div class="card">
+          <div class="progress"><i id="linearFill"></i></div>
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="startProg">Start</button>
+            <button class="btn" id="stopProg">Stop</button>
+            <button class="btn" id="resetProg">Reset</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Circular Progress</h3>
+          <div id="circProg" style="width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;background:conic-gradient(#4facfe 0%, #e0e0e0 0%)">0%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product -->
+    <section id="p-product">
+      <h2>📦 Product</h2>
+      <div class="row">
+        <div class="card">
+          <div style="height:200px;background:linear-gradient(45deg,#667eea,#764ba2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white">Product Image</div>
+          <h3 style="margin-top:8px">Premium Smartphone</h3>
+          <p class="small">Price: <strong>$899.99</strong></p>
+          <label>Quantity</label>
+          <select id="prodQty"><option>1</option><option>2</option><option>3</option></select>
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="addCart">Add to Cart</button>
+            <div id="cartInfo" class="right muted">Cart: 0</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Details</h3>
+          <p class="small">Demo product card.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crypto -->
+    <section id="p-crypto">
+      <h2>💰 Crypto Tracker (CoinGecko)</h2>
+      <div class="row">
+        <div class="card">
+          <div class="flex">
+            <label>Currency</label>
+            <select id="cryptoIds" style="margin-left:8px">
+              <option value="bitcoin">Bitcoin (BTC)</option>
+              <option value="ethereum">Ethereum (ETH)</option>
+              <option value="cardano">Cardano (ADA)</option>
+              <option value="solana">Solana (SOL)</option>
+            </select>
+            <button class="btn" id="refreshCrypto">Refresh</button>
+          </div>
+          <div style="margin-top:12px" id="cryptoResult"></div>
+        </div>
+        <div class="card">
+          <h3>Live Data</h3>
+          <p class="small">From CoinGecko (no key). If remote fetch fails, a simulated fallback will show.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="p-quiz">
+      <h2>❓ Quiz App</h2>
+      <div class="card">
+        <div id="q-question" class="small" style="font-weight:600">Question will appear here</div>
+        <div id="q-options" style="margin-top:8px"></div>
+        <div style="margin-top:8px" class="flex">
+          <button class="btn" id="q-next">Next</button>
+          <div class="right muted">Score: <span id="q-score">0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clock -->
+    <section id="p-clock">
+      <h2>🕐 Digital Clock</h2>
+      <div class="card" style="text-align:center">
+        <div id="clockTime" style="font-size:3rem;font-weight:700">00:00:00</div>
+        <div id="clockDate" class="muted" style="margin-top:6px">--</div>
+      </div>
+    </section>
+
+    <!-- TTS -->
+    <section id="p-tts">
+      <h2>🔊 Text to Speech</h2>
+      <div class="row">
+        <div class="card">
+          <textarea id="ttsText" rows="4">Hello — this is a demo of text-to-speech.</textarea>
+          <label>Voice</label>
+          <select id="voiceSelect"></select>
+          <label>Rate <span id="rateVal">1</span></label>
+          <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1" />
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="speakBtn">Speak</button>
+            <button class="btn" id="stopSpeak">Stop</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Notes</h3>
+          <p class="small">TTS voices vary by browser & platform; Chrome/Edge usually have more voices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QR -->
+    <section id="p-qr">
+      <h2>📱 QR Generator</h2>
+      <div class="row">
+        <div class="card">
+          <input id="qrText" placeholder="Enter URL or text" />
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="genQR">Generate</button>
+            <button class="btn" id="downloadQR">Download</button>
+          </div>
+          <div style="margin-top:12px;text-align:center" id="qrOut">QR will appear here</div>
+        </div>
+        <div class="card">
+          <h3>About</h3>
+          <p class="small">Uses qrserver free API.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Password -->
+    <section id="p-password">
+      <h2>🔐 Password Generator</h2>
+      <div class="row">
+        <div class="card">
+          <label>Length</label>
+          <input id="pwLen" type="range" min="4" max="64" value="12" />
+          <div style="margin-top:8px" class="small">Length: <span id="pwLenVal">12</span></div>
+          <div style="margin-top:8px">
+            <label><input id="pU" type="checkbox" checked /> Uppercase</label><br>
+            <label><input id="pL" type="checkbox" checked /> Lowercase</label><br>
+            <label><input id="pN" type="checkbox" checked /> Numbers</label><br>
+            <label><input id="pS" type="checkbox" /> Symbols</label>
+          </div>
+          <div style="margin-top:8px" class="flex">
+            <button class="btn" id="genPw">Generate</button>
+            <button class="btn" id="copyPw">Copy</button>
+          </div>
+          <div style="margin-top:12px;padding:10px;border-radius:8px;background:#f7fbff" id="pwOut">Your password will appear here</div>
+        </div>
+        <div class="card">
+          <h3>Tips</h3>
+          <p class="small">Longer is stronger. Use a password manager for storage.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
